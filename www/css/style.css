@@ -1,0 +1,146 @@
+html,body {
+    margin:0;
+    padding:0;
+}
+
+body {
+    font:100% arial,sans-serif;
+    text-align:center;
+    background-repeat:repeat-x;
+}
+
+p {
+    margin:0 10px 10px;
+}
+
+a {
+    text-decoration:none;
+    padding:5px;
+}
+
+div#header {
+    text-align:center;
+}
+
+div#header h1 {
+    height:80px;
+    line-height:80px;
+    padding-left:10px;
+    margin:0;
+}
+
+div#container {
+    text-align:center;
+    width:1024px;
+    margin:0 auto;
+}
+
+div#content p {
+    line-height:1.4;
+}
+
+div#navigation ul {
+    list-style-type:none;
+    margin:15px 0;
+    padding:0;
+}
+
+div#navigation li {
+    margin-bottom:5px;
+}
+
+div#footer p {
+    margin:0;
+    padding:5px 10px;
+}
+
+div#wrapper {
+    float:left;
+    width:100%;
+}
+
+div#content {
+    margin:0 200px;
+    position: absolute;
+}
+
+div#navigation {
+    float:left;
+    width:200px;
+}
+
+div#extra {
+    float:left;
+    width:200px;
+    margin-left:-200px;
+}
+
+div#footer {
+    clear:left;
+    width:100%;
+}
+
+.button,.button:visited {
+    background:#222 url(/empty.png) repeat-x;
+    display:inline-block;
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    line-height:1;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    -moz-box-shadow:0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow:0 1px 3px rgba(0,0,0,0.5);
+    text-shadow:0 -1px 1px rgba(0,0,0,0.25);
+    border-bottom:1px solid rgba(0,0,0,0.25);
+    position:relative;
+    cursor:pointer;
+    padding:5px 10px 6px;
+}
+
+.button:hover {
+    background-color:#111;
+    color:#fff;
+}
+
+.button:active {
+    top:1px;
+}
+
+#topline {
+    position:relative;
+    top:5px;
+    text-align:center;
+    background-color:#dedede;
+}
+
+.error {
+    color: rgb(255,0,0);
+}
+
+.button,.button:visited {
+    background:#222 url(/empty.png) repeat-x;
+    display:inline-block;
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    line-height:1;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    -moz-box-shadow:0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow:0 1px 3px rgba(0,0,0,0.5);
+    text-shadow:0 -1px 1px rgba(0,0,0,0.25);
+    border-bottom:1px solid rgba(0,0,0,0.25);
+    position:relative;
+    cursor:pointer;
+    padding:5px 10px 6px;
+}
+
+.button:hover {
+    background-color:#111;
+    color:#fff;
+}
+
+.button:active {
+    top:1px;
+}

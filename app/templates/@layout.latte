@@ -1,0 +1,38 @@
+{**
+ * My Application layout template.
+ *
+ * @copyright  Copyright (c) 2010 John Doe
+ * @package    MyApplication
+ *
+ * @param string   $basePath web base path
+ * @param string   $description web page desription (optional)
+ * @param string   $keywords keywords
+ * @param string   $title page title
+ * @param string   $robots   tell robots how to index the content of a page (optional)
+ *}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="language" content="cs">
+  <meta name="Description" content="{$description}" n:ifset="$description">
+  <meta name="Author" content="Michal 'Duke' Kruzik">
+  <meta name="keywords" content="{$keywords}" n:ifset="$keywords">
+  <meta name="google-site-verification" content="xjIf4L7ECylgFBbEoH6BiQc09l7uLD5ixcrmeMxa7zo">
+	<meta name="robots" content="{$robots}" n:ifset="$robots">
+
+	<title>{$title}</title>
+
+	<!--<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css" type="text/css">-->
+	<!--<link rel="stylesheet" media="print" href="{$basePath}/css/print.css" type="text/css">-->
+	<link rel="shortcut icon" href="{$basePath}/favicon.ico" type="image/x-icon">
+
+	{block head}{/block}
+</head>
+
+<body>
+	{include #content}
+</body>
+</html>
