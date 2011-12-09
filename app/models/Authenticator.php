@@ -31,7 +31,7 @@ class Authenticator extends Nette\Object implements NS\IAuthenticator
 		
     $result = dibi::query('SELECT * FROM `users` WHERE %and', array(
         array('username = %s', mysql_real_escape_string($username)),
-        array('passw = %s', md5($password . $salt)),
+        array('passw = %s', md5($password . $this->salt)),
         ));
 
 		if (count($result) != 1) {

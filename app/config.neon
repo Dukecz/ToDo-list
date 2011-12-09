@@ -19,8 +19,7 @@ common:
 		password: 9GBmEmnNusxdyedp
 		database: todolist
 		charset: utf8
-		profiler: true
-		lazy: true
+		profiler: TRUE
   
 	services:
 		robotLoader:
