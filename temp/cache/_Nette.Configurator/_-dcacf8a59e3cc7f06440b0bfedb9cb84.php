@@ -1,4 +1,4 @@
-<?php //netteCache[01]000216a:2:{s:4:"time";s:21:"0.38827600 1323397122";s:9:"callbacks";a:1:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:46:"/srv/http/nette/vhost-todolist/app/config.neon";i:2;i:1323397119;}}}?><?php
+<?php //netteCache[01]000216a:2:{s:4:"time";s:21:"0.42806100 1323463129";s:9:"callbacks";a:1:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:46:"/srv/http/nette/vhost-todolist/app/config.neon";i:2;i:1323463127;}}}?><?php
 // source file /srv/http/nette/vhost-todolist/app/config.neon
 
 $container->addService('robotLoader', function($container) {
@@ -32,6 +32,8 @@ $container->params['database'] = array (
 );
 
 date_default_timezone_set('Europe/Prague');
+
+ini_set('default_charset', 'UTF-8');
 
 Nette\Caching\Storages\FileStorage::$useDirectories = true;
 

@@ -25,6 +25,8 @@ $configurator->container->params += $params;
 $configurator->container->params['tempDir'] = __DIR__ . '/../temp';
 $container = $configurator->loadConfig(__DIR__ . '/config.neon');
 
+// Dibi connection
+dibi::connect($configurator->container->params['database']);
 
 // Setup router
 $router = $container->router;

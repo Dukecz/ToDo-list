@@ -11,7 +11,8 @@ use Nette\Security as NS;
  */
 class Authenticator extends Nette\Object implements NS\IAuthenticator
 {
-
+  private $salt = "sůlnadzlato";
+  
 	public function __construct()
 	{
 	}
@@ -27,24 +28,18 @@ class Authenticator extends Nette\Object implements NS\IAuthenticator
 	public function authenticate(array $credentials)
 	{
 		list($username, $password) = $credentials;
-		//$row = $this->users->where('username', $username)->fetch();
 		
-		if($username == "Duke" && $password == "pass"){
-      $row = "1";   
-    }else{
-      $row = "0";
-    }
+    $result = dibi::query('SELECT * FROM `users` WHERE %and', array(
+        array('username = %s', mysql_real_escape_string($username)),
+        array('passw = %s', md5($password . $salt)),
+        ));
 
-		if (!$row) {
-			throw new NS\AuthenticationException("User '$username' not found.", self::IDENTITY_NOT_FOUND);
+		if (count($result) != 1) {
+			throw new NS\AuthenticationException("Invalid username or password.", self::INVALID_CREDENTIAL);
 		}
-/*
-		if ($row->password !== $this->calculateHash($password)) {
-			throw new NS\AuthenticationException("Invalid password.", self::INVALID_CREDENTIAL);
-		}
-*/
+
 		unset($row->password);
-		return new NS\Identity("1");
+		return new NS\Identity($username);
 	}
 
 
