@@ -22,7 +22,7 @@ class RegistrationPresenter extends BasePresenter
     $this->template->menuItems = array(
             'Domů' => 'Homepage:',
             'Nastavení' => 'Settigns:',
-            'Odhlášení' => 'Logout:',
+            'Odhlášení' => 'Default:logout:',
             );    
     }
   }
@@ -53,23 +53,22 @@ class RegistrationPresenter extends BasePresenter
 		
     if(preg_match($reg, $username, $matches) > 0){ // pokud není jméno alfanumerické
       $form->addError("Uživatelské jméno může obsahovat pouze alfanumerické znaky.");
-    }
-    
-    $result = dibi::query('SELECT * FROM `users` WHERE username = %s', $username);  // kontrola jestli je jméno již v db
-    
-    if(count($result) != 0){ // pokud ano vypíšeme heslo
-      $form->addError("Uživatelské jméno je již registrováno.");
-    }  
+    }else{
+      $result = dibi::query('SELECT * FROM `users` WHERE username = %s', $username);  // kontrola jestli je jméno již v db
       
-      $arr = array(
-        'username' => mysql_real_escape_string($_POST["username"]),
-        'passw'  => md5($password . $this->salt),
+      if(count($result) != 0){ // pokud ano vypíšeme chybu
+      $form->addError("Uživatelské jméno je již registrováno.");
+      }else{
+        $arr = array(
+          'username' => mysql_real_escape_string($_POST["username"]),
+          'passw'  => md5($password . $this->salt),
         );
 
         dibi::query('INSERT INTO users', $arr);
-      
-    $this->redirect('Homepage:');
-			
+        
+        $this->redirect('Homepage:');     
+      } 
+    }	
       
 		} catch (NS\AuthenticationException $e) {
 			$form->addError($e->getMessage());
