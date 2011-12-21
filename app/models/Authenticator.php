@@ -38,7 +38,9 @@ class Authenticator extends Nette\Object implements NS\IAuthenticator
 			throw new NS\AuthenticationException("Invalid username or password.", self::INVALID_CREDENTIAL);
 		}
 
-		return new NS\Identity($username);
+		$result = dibi::query('SELECT iduser, role FROM `users` WHERE `username` = %s', $username)->fetch();
+
+		return new NS\Identity($result->iduser, $result->role, $username);
 	}
 
 

@@ -12,14 +12,15 @@ common:
 		default_charset: "UTF-8"
 
 	database:
-		class: DibiConnection
 		driver: mysql
-		hostname: localhost
+		host: localhost
 		username: todolist
 		password: 9GBmEmnNusxdyedp
 		database: todolist
 		charset: utf8
 		profiler: TRUE
+		detectTypes: TRUE
+
   
 	services:
 		robotLoader:

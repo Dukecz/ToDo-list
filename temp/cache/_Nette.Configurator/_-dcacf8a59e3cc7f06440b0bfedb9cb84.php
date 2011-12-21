@@ -1,4 +1,4 @@
-<?php //netteCache[01]000216a:2:{s:4:"time";s:21:"0.78054400 1323464325";s:9:"callbacks";a:1:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:46:"/srv/http/nette/vhost-todolist/app/config.neon";i:2;i:1323464324;}}}?><?php
+<?php //netteCache[01]000216a:2:{s:4:"time";s:21:"0.83587400 1324317102";s:9:"callbacks";a:1:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:46:"/srv/http/nette/vhost-todolist/app/config.neon";i:2;i:1324317100;}}}?><?php
 // source file /srv/http/nette/vhost-todolist/app/config.neon
 
 $container->addService('robotLoader', function($container) {
@@ -20,14 +20,14 @@ $container->addService('authenticator', function($container) {
 }, NULL);
 
 $container->params['database'] = array (
-  'class' => 'DibiConnection',
   'driver' => 'mysql',
-  'hostname' => 'localhost',
+  'host' => 'localhost',
   'username' => 'todolist',
   'password' => '9GBmEmnNusxdyedp',
   'database' => 'todolist',
   'charset' => 'utf8',
   'profiler' => true,
+  'detectTypes' => true,
 );
 
 date_default_timezone_set('Europe/Prague');

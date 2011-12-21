@@ -1,12 +1,12 @@
-<?php //netteCache[01]000389a:2:{s:4:"time";s:21:"0.46972100 1323396170";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:67:"/srv/http/nette/vhost-todolist/app/templates/Homepage/default.latte";i:2;i:1323396156;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"f38d86f released on 2011-08-24";}}}?><?php
+<?php //netteCache[01]000389a:2:{s:4:"time";s:21:"0.22369200 1324305953";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:67:"/srv/http/nette/vhost-todolist/app/templates/Homepage/default.latte";i:2;i:1324305948;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"f38d86f released on 2011-08-24";}}}?><?php
 
 // source file: /srv/http/nette/vhost-todolist/app/templates/Homepage/default.latte
 
-?><?php list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, '5suq72yvgs')
+?><?php list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'kystrt1fe3')
 ;//
 // block head
 //
-if (!function_exists($_l->blocks['head'][] = '_lbcb1101e171_head')) { function _lbcb1101e171_head($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['head'][] = '_lb823db7b06b_head')) { function _lb823db7b06b_head($_l, $_args) { extract($_args)
 ?>
 <link rel="stylesheet" href="<?php echo htmlSpecialChars($basePath) ?>/css/style.css" type="text/css" />
 <script src="../js/alphanumeric.js" type="text/javascript"></script>
@@ -16,7 +16,7 @@ if (!function_exists($_l->blocks['head'][] = '_lbcb1101e171_head')) { function _
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lbfd6db80470_content')) { function _lbfd6db80470_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lb0f5b6b8516_content')) { function _lb0f5b6b8516_content($_l, $_args) { extract($_args)
 ?>
 <div id="wrapper">
 <div id="container">
@@ -27,9 +27,7 @@ if (!function_exists($_l->blocks['content'][] = '_lbfd6db80470_content')) { func
   <div id="header"><h1><?php echo Nette\Templating\DefaultHelpers::escapeHtml($loggedAs, ENT_NOQUOTES) ?></div>
   <div id="wrapper">
     <div id="content">
-<?php if ($loggedAs != "Nepřihlášen"): ?>
-      
-<?php else: $_ctrl = $control->getWidget("signInForm"); if ($_ctrl instanceof Nette\Application\UI\IPartiallyRenderable) $_ctrl->validateControl(); $_ctrl->render() ;endif ?>
+<?php if ($loggedAs != "Nepřihlášen"): $_ctrl = $control->getWidget("addTaskForm"); if ($_ctrl instanceof Nette\Application\UI\IPartiallyRenderable) $_ctrl->validateControl(); $_ctrl->render() ;else: $_ctrl = $control->getWidget("signInForm"); if ($_ctrl instanceof Nette\Application\UI\IPartiallyRenderable) $_ctrl->validateControl(); $_ctrl->render() ;endif ?>
     </div>
   </div>
   <div id="navigation">

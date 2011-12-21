@@ -1,5 +1,6 @@
 <?php
 use Nette\Application\UI,
+Nette\Forms\Form,
 	Nette\Security as NS;
 /**
  * Homepage presenter.
@@ -31,10 +32,12 @@ class RegistrationPresenter extends BasePresenter
 	{
 		$form = new UI\Form;
 		$form->addText('username', 'Username:')
-			->setRequired('Please provide a username.');
+			->setRequired('Please provide a username.')
+			->addRule(Form::PATTERN, 'Může obsahovat pouze alfanumerické znaky a _', '^[a-zA-Z0-9_]+$');
 
 		$form->addPassword('password', 'Password:')
-			->setRequired('Please provide a password.');
+			->setRequired('Please provide a password.')
+			->addRule(Form::MIN_LENGTH, 'Heslo musí mít alespoň %d znaků', 5);
 
 		$form->addSubmit('send', 'Register');
 
