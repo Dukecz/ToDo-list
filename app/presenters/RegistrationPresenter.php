@@ -12,22 +12,6 @@ class RegistrationPresenter extends BasePresenter
 {
   private $salt = "sůlnadzlato";
   
-  protected function makeMenu($isLogged)
-	{
-    if(!$isLogged){
-    $this->template->menuItems = array(
-            'Domů' => 'Homepage:',
-            'Registrace' => 'Registration:',
-            );
-    }else{
-    $this->template->menuItems = array(
-            'Domů' => 'Homepage:',
-            'Nastavení' => 'Settigns:',
-            'Odhlášení' => 'Default:logout:',
-            );    
-    }
-  }
-  
 	protected function createComponentSignInForm()
 	{
 		$form = new UI\Form;
