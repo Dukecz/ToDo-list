@@ -16,20 +16,6 @@ use Nette\Application\UI,
  */
 class AdminPresenter extends BasePresenter
 {
-  protected function getRole($user)
-	{
-
-		if($user->isInRole('1')){
-			$result = dibi::query('SELECT role FROM `roles` WHERE idroles = %i', 1)->fetch();
-		}elseif($user->isInRole('2')){
-			$result = dibi::query('SELECT role FROM `roles` WHERE idroles = %i', 2)->fetch();
-		}else{
-			$result = dibi::query('SELECT role FROM `roles` WHERE idroles = %i', 0)->fetch();
-		}
-
-		return $result->role;
-
-  }
 
 /**
  * Function puts variables into template
@@ -44,7 +30,7 @@ class AdminPresenter extends BasePresenter
     $session = $this->getSession('session');
   
 		if($this->getUser()->isLoggedIn()) { // přihlášení uživatelé
-			$this->template->loggedAs = "Přihlášen jako " . $this->getUser()->identity->data[0] . " (" . $this->getRole($this->getUser()) . ")";
+			$this->template->loggedAs = "Přihlášen jako " . $this->getUser()->identity->data[0] . " (" . $this->getUser()->identity->data[1] . ")";
     }else{
       $this->redirect('Homepage:');
     }

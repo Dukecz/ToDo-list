@@ -15,10 +15,7 @@ class Authenticator extends Nette\Object implements NS\IAuthenticator
   
 	public function __construct()
 	{
-	}
-
-
-
+  }
 	/**
 	 * Performs an authentication
 	 * @param  array
@@ -38,9 +35,11 @@ class Authenticator extends Nette\Object implements NS\IAuthenticator
 			throw new NS\AuthenticationException("Invalid username or password.", self::INVALID_CREDENTIAL);
 		}
 
-		$result = dibi::query('SELECT iduser, role FROM `users` WHERE `username` = %s', $username)->fetch();
+		$result = dibi::query('SELECT iduser, users.role AS role, roles.role as rolename FROM `users`
+                          JOIN `roles` ON users.role = roles.idroles
+                          WHERE `username` = %s', $username)->fetch();
 
-		return new NS\Identity($result->iduser, $result->role, $username);
+		return new NS\Identity($result->iduser, $result->role, $username, $result->rolename);
 	}
 
 

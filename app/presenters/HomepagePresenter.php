@@ -16,19 +16,6 @@ use Nette\Application\UI,
  */
 class HomepagePresenter extends BasePresenter
 {
-  protected function getRole($user)
-	{
-
-		if($user->isInRole('1')){
-			$result = dibi::query('SELECT role FROM `roles` WHERE idroles = %i', 1)->fetch();
-		}elseif($user->isInRole('2')){
-			$result = dibi::query('SELECT role FROM `roles` WHERE idroles = %i', 2)->fetch();
-		}else{
-			$result = dibi::query('SELECT role FROM `roles` WHERE idroles = %i', 0)->fetch();
-		}
-
-		return $result->role;
-  }
 
 /**
  * Function that creates add task form
@@ -43,14 +30,22 @@ class HomepagePresenter extends BasePresenter
 			->setRequired('Please provide a task name.');
 
 		$form->addTextArea('description', 'Description:');
+    
+    $form->addText('date', 'Deadline')->setOption('description', 'Use format: YYYY-MM-DD')
+      ->addRule(UI\Form::PATTERN, 'Může obsahovat pouze alfanumerické znaky a _', '^(20)\d\d[- /.](1[1-9])[- /.](0[1-9]|[12][0-9]|3[01])$');
 
-		$form->addRadioList('priority', 'Priority', array(
+		
+    
+    $form->addRadioList('priority', 'Priority', array(
     	'1' => '1',
     	'2' => '2',
     	'3' => '3',
 		));
 
-
+    $result = dibi::query('SELECT idcategory, name FROM `categories` WHERE iduser = %i', $this->getUser()->getId())->fetchPairs('idcategory', 'name');
+    
+    $form->addRadioList('category', 'Category', $result)
+      ->setRequired('Please select category.');
 
 		$form->addSubmit('addtask', 'Add Task');
 
@@ -73,9 +68,10 @@ class HomepagePresenter extends BasePresenter
 			$arr = array(
       	'name' => $values->name,
     		'description'  => $values->description,
+        'deadline'  => $values->date,
 				'priority'  => $values->priority,
 				'iduser'  => $this->getUser()->getId(),
-				'idcategory'  => $values->idcategory,
+				'idcategory'  => $values->category,
         );
 
 			dibi::query('INSERT INTO tasks', $arr);
@@ -146,7 +142,7 @@ class HomepagePresenter extends BasePresenter
     $session = $this->getSession('session');
   
   if($this->getUser()->isLoggedIn()) { // přihlášení uživatelé
-			$this->template->loggedAs = "Přihlášen jako " . $this->getUser()->identity->data[0] . " (" . $this->getRole($this->getUser()) . ")";
+			$this->template->loggedAs = "Přihlášen jako " . $this->getUser()->identity->data[0] . " (" . $this->getUser()->identity->data[1] . ")";
 			$this->createComponentAddTaskForm();
     }else{
       $this->template->loggedAs = "Nepřihlášen";
