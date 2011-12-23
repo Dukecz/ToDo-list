@@ -80,7 +80,7 @@ div#footer {
     width:100%;
 }
 
-.button,.button:visited {
+.menubutton,.menubutton:visited {
     background:#222 url(/empty.png) repeat-x;
     display:inline-block;
     color:#fff;
@@ -98,12 +98,12 @@ div#footer {
     padding:5px 10px 6px;
 }
 
-.button:hover {
+.menubutton:hover {
     background-color:#111;
     color:#fff;
 }
 
-.button:active {
+.menubutton:active {
     top:1px;
 }
 
@@ -118,29 +118,32 @@ div#footer {
     color: rgb(255,0,0);
 }
 
-.button,.button:visited {
-    background:#222 url(/empty.png) repeat-x;
-    display:inline-block;
-    color:#fff;
-    text-decoration:none;
-    font-weight:700;
-    line-height:1;
-    -moz-border-radius:5px;
-    -webkit-border-radius:5px;
-    -moz-box-shadow:0 1px 3px rgba(0,0,0,0.5);
-    -webkit-box-shadow:0 1px 3px rgba(0,0,0,0.5);
-    text-shadow:0 -1px 1px rgba(0,0,0,0.25);
-    border-bottom:1px solid rgba(0,0,0,0.25);
-    position:relative;
-    cursor:pointer;
-    padding:5px 10px 6px;
+/*paginator css*/
+
+.paginator {
+	margin: 1em 0;
+	font-size: 90%;
 }
 
-.button:hover {
-    background-color:#111;
-    color:#fff;
+.paginator a, .paginator span {
+	margin-right: 0.1em;
+	padding: 0.2em 0.5em;
+	color: #999999;
 }
 
-.button:active {
-    top:1px;
+.paginator a {
+	border: 1px solid #9AAFE5;
+	text-decoration: none;
+	color: #105CB6;
+}
+
+.paginator span.button {
+	border: 1px solid #DDDDDD;
+}
+
+.paginator .current {
+	background: #2E6AB1;
+	border: 1px solid #2E6AB1;
+	color: white;
+	font-weight: bold;
 }

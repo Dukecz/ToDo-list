@@ -16,7 +16,19 @@ use Nette\Application\UI,
  */
 class HomepagePresenter extends BasePresenter
 {
-
+    public function createComponentVp()
+    {
+      $vp = new VisualPaginator($this, 'vp');
+      $paginator = $vp->getPaginator();
+      $paginator->SetItemsPerPage(5);
+      return $vp;
+    }
+    
+    protected function listTasks($paginator)
+    { 
+      $paginator->SetItemCount(dibi::query('SELECT count(*) FROM `tasks` WHERE iduser = %i', $this->getUser()->getId())->fetchSingle());
+      return $result  = dibi::query('SELECT * FROM `tasks` WHERE iduser = %i ORDER BY priority %ofs %lmt', $this->getUser()->getId(), $paginator->getOffset(), $paginator->getItemsPerPage())->fetchAll();
+    }
 /**
  * Function that creates add task form
  *
@@ -32,7 +44,8 @@ class HomepagePresenter extends BasePresenter
 		$form->addTextArea('description', 'Description:');
     
     $form->addText('date', 'Deadline')->setOption('description', 'Use format: YYYY-MM-DD')
-      ->addRule(UI\Form::PATTERN, 'Může obsahovat pouze alfanumerické znaky a _', '^(20)\d\d[- /.](1[1-9])[- /.](0[1-9]|[12][0-9]|3[01])$');
+      ->addCondition(UI\Form::FILLED)
+        ->addRule(UI\Form::PATTERN, 'Může být v rozmezí 2011-01-01 až 2019-12-31', '^(20)\d\d[- /.](1[1-9])[- /.](0[1-9]|[12][0-9]|3[01])$');
 
 		
     
@@ -143,7 +156,12 @@ class HomepagePresenter extends BasePresenter
   
   if($this->getUser()->isLoggedIn()) { // přihlášení uživatelé
 			$this->template->loggedAs = "Přihlášen jako " . $this->getUser()->identity->data[0] . " (" . $this->getUser()->identity->data[1] . ")";
-			$this->createComponentAddTaskForm();
+      $this->createComponentAddTaskForm();
+
+      $this->createComponentVp();
+      
+      $this->template->tasks = $this->listTasks($this['vp']->getPaginator());
+    
     }else{
       $this->template->loggedAs = "Nepřihlášen";
       $this->createComponentSignInForm();

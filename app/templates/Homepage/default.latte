@@ -13,6 +13,12 @@
   <div id="wrapper">
     <div id="content">
       {if $loggedAs != "Nepřihlášen"}
+      <table>
+      <th>Name</th><th>Description</th><th>Deadline</th><th>Status</th><th>Priority</th>
+      {foreach $tasks as $row}
+      <tr><td>{$row->name}</td><td>{$row->description}</td><td>{$row->deadline}</td><td>{$row->status}</td><td>{$row->priority}</td></tr>
+      {/foreach}
+      {control vp}
       {control addTaskForm}
       {else}
       {control signInForm}
