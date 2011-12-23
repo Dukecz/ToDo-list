@@ -46,12 +46,24 @@ class RegistrationPresenter extends BasePresenter
       if(count($result) != 0){ // pokud ano vypíšeme chybu
       $form->addError("Uživatelské jméno je již registrováno.");
       }else{
-        $arr = array(
+        $userDB = array(
           'username' => mysql_real_escape_string($_POST["username"]),
           'passw'  => md5($password . $this->salt),
         );
 
-        dibi::query('INSERT INTO users', $arr);
+        dibi::begin();
+        
+        dibi::query('INSERT INTO users', $userDB); // vytvoření uživatele
+        
+        $userid = dibi::query('SELECT iduser FROM `users` WHERE username = %s', $username);
+        $categoryDB = array(
+          'name' => 'Default',
+          'iduser'  => $userid,
+        );
+        
+        dibi::query('INSERT INTO categories', $categoryDB); // vytvoření jeho defaultní kategorie
+        
+        dibi::commit();
         
         $this->redirect('Homepage:');     
       } 
