@@ -31,8 +31,8 @@ dibi::connect($container->params['database']);
 // Setup router
 $router = $container->router;
 $router[] = new Route('index.php', 'Homepage:default', Route::ONE_WAY);
+$router[] = new Route('page/<vp-page>', 'Homepage:default');
 $router[] = new Route('<presenter>/<action>[/<id>]', 'Homepage:default');
-
 
 // Configure and run the application!
 $application = $container->application;
