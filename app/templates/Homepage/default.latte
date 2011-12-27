@@ -13,11 +13,12 @@
   <div id="wrapper">
     <div id="content">
       {if $loggedAs != "Nepřihlášen"}
-      <table>
-      <th>Name</th><th>Description</th><th>Deadline</th><th>Status</th><th>Priority</th>
+			<table>
+      <th>Name</th><th>Description</th><th>Deadline</th><th>Status</th><th>Priority</th><th colspan="2">Options</th>
       {foreach $tasks as $row}
-      <tr><td>{$row->name}</td><td>{$row->description}</td><td>{$row->deadline}</td><td>{$row->status}</td><td>{$row->priority}</td></tr>
+      <tr><td>{$row->name}</td><td>{$row->description}</td><td>{$row->deadline}</td><td>{$row->status}</td><td>{$row->priority}</td><td><a href="/ToDo-list/?editTask={$row->idtask}"><img src="/ToDo-list/images/b_edit.png" alt="Edit Task"></a></td><td><a href="/ToDo-list/?deleteTask={$row->idtask}"><img src="/ToDo-list/images/b_drop.png" alt="Delete Task"></a></td></tr>
       {/foreach}
+			</table>
       {control vp}
       {control addTaskForm}
       {else}

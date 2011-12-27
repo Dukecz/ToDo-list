@@ -16,19 +16,12 @@ use Nette\Application\UI,
  */
 class HomepagePresenter extends BasePresenter
 {
-    public function createComponentVp()
-    {
-      $vp = new VisualPaginator($this, 'vp');
-      $paginator = $vp->getPaginator();
-      $paginator->SetItemsPerPage(5);
-      return $vp;
-    }
-    
     protected function listTasks($paginator)
     { 
       $paginator->SetItemCount(dibi::query('SELECT count(*) FROM `tasks` WHERE iduser = %i', $this->getUser()->getId())->fetchSingle());
       return $result  = dibi::query('SELECT * FROM `tasks` WHERE iduser = %i ORDER BY priority %ofs %lmt', $this->getUser()->getId(), $paginator->getOffset(), $paginator->getItemsPerPage())->fetchAll();
     }
+
 /**
  * Function that creates add task form
  *
@@ -107,7 +100,6 @@ class HomepagePresenter extends BasePresenter
 	protected function createComponentSignInForm()
 	{
 		$form = new UI\Form;
-		//$form = new Form;
 		$form->addText('username', 'Username:')
 			->setRequired('Please provide a username.')
 			->addRule(UI\Form::PATTERN, 'Může obsahovat pouze alfanumerické znaky a _', '^[a-zA-Z0-9_]+$');

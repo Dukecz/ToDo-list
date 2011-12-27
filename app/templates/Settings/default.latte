@@ -12,7 +12,14 @@
   <div id="header"><h1>{$loggedAs}</div>
   <div id="wrapper">
     <div id="content">
-      Not yet implemented.
+      <table>
+      <th>Name</th><th>Options</th>
+      {foreach $categories as $row}
+      <tr><td>{$row->name}</td></tr>
+      {/foreach}
+			</table>
+      {control vp}
+			{control addCategoryForm}
     </div>
   </div>
   <div id="navigation">

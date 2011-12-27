@@ -8,6 +8,14 @@
  */
 abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
+	public function createComponentVp()
+  {
+    $vp = new VisualPaginator($this, 'vp');
+    $paginator = $vp->getPaginator();
+    $paginator->SetItemsPerPage(5);
+    return $vp;
+  }
+
 /**
  * Function that creates menu that depends on login status
  *

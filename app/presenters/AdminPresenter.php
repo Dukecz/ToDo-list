@@ -17,6 +17,12 @@ use Nette\Application\UI,
 class AdminPresenter extends BasePresenter
 {
 
+    protected function listUsers($paginator)
+    {
+      $paginator->SetItemCount(dibi::query('SELECT count(*) FROM `users`')->fetchSingle());
+      return $result  = dibi::query('SELECT * FROM `users` ORDER BY username %ofs %lmt', $paginator->getOffset(), $paginator->getItemsPerPage())->fetchAll();
+    }
+
 /**
  * Function puts variables into template
  */
@@ -31,6 +37,10 @@ class AdminPresenter extends BasePresenter
   
 		if($this->getUser()->isLoggedIn()) { // přihlášení uživatelé
 			$this->template->loggedAs = "Přihlášen jako " . $this->getUser()->identity->data[0] . " (" . $this->getUser()->identity->data[1] . ")";
+
+      $this->createComponentVp();
+
+      $this->template->users = $this->listUsers($this['vp']->getPaginator());
     }else{
       $this->redirect('Homepage:');
     }
