@@ -6,11 +6,17 @@ Task manager for single users. This is created as semestral work for college.
 
 Status
 -------------
-Functional registration and login/logout.
+Betaversion with limited management functionality.
 
 TODO
 -------------
 * http://duke.dynalias.com/ticket/index.php?project=4&do=index&switch=1
+
+Minimum requirements
+-------------
+* Database supported by Dibi
+*	PHP 5.3 (because of Namespaces)
+* PHP configuration listed here http://doc.nette.org/cs/requirements
 
 Developers
 =============
