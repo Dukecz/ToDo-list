@@ -32,6 +32,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     $this->template->menuItems = array(
             'Domů' => 'Homepage:',
             'Nastavení' => 'Settings:',
+						'Profil' => 'Profile:',
             'Odhlášení' => 'Logout:',
             );
 			if($this->getUser()->isInRole('2')){
@@ -39,6 +40,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
             'Domů' => 'Homepage:',
             'Nastavení' => 'Settings:',
 						'Administrace' => 'Admin:',
+						'Profil' => 'Profile:',
             'Odhlášení' => 'Logout:',
             );
 			}
