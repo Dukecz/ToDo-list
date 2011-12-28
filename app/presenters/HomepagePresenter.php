@@ -1,6 +1,7 @@
 <?php
 use Nette\Application\UI,
-	Nette\Security as NS;
+	Nette\Security as NS,
+	Maite\Tabella;
 /**
  * Homepage presenter.
  *
@@ -134,6 +135,16 @@ class HomepagePresenter extends BasePresenter
 		}
 	}
 
+	private function deleteTask()
+	{
+		$arr = array(
+    	'idtask' => $_GET["deleteTask"],
+			'iduser'  => $this->getUser()->getId(),
+        );
+
+		dibi::query('DELETE FROM `tasks` WHERE %and', $arr );
+	}
+
 /**
  * Function puts variables into template
  */
@@ -146,11 +157,16 @@ class HomepagePresenter extends BasePresenter
 	
     $session = $this->getSession('session');
   
+	if(isset($_GET["editTask"])) $this->editTask();
+	if(isset($_GET["deleteTask"])) $this->deleteTask();
+
   if($this->getUser()->isLoggedIn()) { // přihlášení uživatelé
 			$this->template->loggedAs = "Přihlášen jako " . $this->getUser()->identity->data[0] . " (" . $this->getUser()->identity->data[1] . ")";
       $this->createComponentAddTaskForm();
 
       $this->createComponentVp();
+
+			//$this->createComponentBasicTabella('bt', $this['vp']->getPaginator());
       
       $this->template->tasks = $this->listTasks($this['vp']->getPaginator());
     
