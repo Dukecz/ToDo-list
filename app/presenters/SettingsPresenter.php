@@ -69,6 +69,66 @@ class SettingsPresenter extends BasePresenter
 			$form->addError($e->getMessage());
 		}
 	}
+
+	private function deleteCategory()
+	{
+		dibi::query('DELETE FROM `categories` WHERE idcategory = %s', $_GET["deleteCategory"] );
+	}
+
+	/**
+ * Function that creates edit task form
+ *
+ * @return UI\Form created add task form
+ */
+	protected function createComponentEditCategoryForm()
+	{
+
+		$form = new UI\Form;
+
+		$form->addText('name', 'Category name:')
+			->setRequired('Please provide a category name.');
+
+		$form->addHidden('idcategory');
+
+		$form->addSubmit('editCategory', 'Edit Category');
+
+		$form->onSuccess[] = callback($this, 'EditCategoryFormSubmitted');
+
+		$category = dibi::query('SELECT idcategory, name FROM `categories` WHERE idcategory = %i', $this->getParam('id'))->fetch();
+
+		$form->setDefaults(array(
+    'name' => $category->name,
+		'idcategory' => $this->getParam('id'),
+		));
+
+		return $form;
+	}
+
+/**
+ * Function that is called when edit task form is successfuly submitted
+ *
+ * @param UI\Form submitted form
+ */
+	public function EditCategoryFormSubmitted($form)
+	{
+		$values = $form->getValues();
+
+		$result = dibi::query('SELECT count(*) FROM `tasks` WHERE %and', array(
+    	array('iduser = %i', $this->getUser()->getId()),
+    	array('idcategory = %i', $values->idcategory),
+			))->fetchSingle();
+
+		if($result == "1"){
+
+		$arr = array(
+    	'name' => $values->name,
+		);
+
+			dibi::query('UPDATE `tasks` SET ', $arr, 'WHERE `id`=%i', $values->idcategory);
+	}
+      $this->redirect('Homepage:default');
+	}
+
 /**
  * Function puts variables into template
  */
@@ -82,11 +142,32 @@ class SettingsPresenter extends BasePresenter
 	
     $session = $this->getSession('session');
 
+		if(isset($_GET["deleteCategory"])) $this->deleteCategory();
+
 		if($this->getUser()->isLoggedIn()) { // přihlášení uživatelé
 			$this->template->loggedAs = "Přihlášen jako " . $this->getUser()->identity->data[0] . " (" . $this->getUser()->identity->data[1] . ")";
-			$this->createComponentVp();
+
 			$this->template->categories = $this->listCategories($this['vp']->getPaginator());
-			$this->createComponentAddCategoryForm();
+    }else{
+      $this->redirect('Homepage:');
+    }
+    	$this->makeMenu($this->getUser()->isLoggedIn());
+  }
+
+	/**
+ * Function puts variables into template
+ */
+  public function renderEditCategory()
+	{
+	  $this->template->description =  "Semestrální práce pro WA1.";
+	  $this->template->keywords =  "kruzimic, fel, čvut, java, programováni, php, html, css, js, ajax";
+	  $this->template->title =  "ToDo-list";
+	  $this->template->robots =  "index,follow";
+
+    $session = $this->getSession('session');
+
+  if($this->getUser()->isLoggedIn()) { // přihlášení uživatelé
+			$this->template->loggedAs = "Přihlášen jako " . $this->getUser()->identity->data[0] . " (" . $this->getUser()->identity->data[1] . ")";
     }else{
       $this->redirect('Homepage:');
     }

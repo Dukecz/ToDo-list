@@ -37,7 +37,7 @@ class Authenticator extends Nette\Object implements NS\IAuthenticator
 
 		$result = dibi::query('SELECT iduser, users.role AS role, roles.role as rolename FROM `users`
                           JOIN `roles` ON users.role = roles.idroles
-                          WHERE `username` = %s', $username)->fetch();
+                          WHERE username = %s', $username)->fetch();
                           
     $data = array($username, $result->rolename);
 

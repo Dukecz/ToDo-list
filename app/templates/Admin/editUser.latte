@@ -12,13 +12,7 @@
   <div id="header"><h1>{$loggedAs}</div>
   <div id="wrapper">
     <div id="content">
-      <table>
-      <th>Username</th><th>Role</th><th colspan="2">Options</th>
-      {foreach $users as $row}
-      <tr><td>{$row->username}</td><td>{$row->role}</td><td><a n:href="editUser id=>$row->iduser"><img src="/ToDo-list/images/b_edit.png" alt="Edit user"></a></td><td><a n:href="Admin:default, deleteUser=>$row->iduser"><img src="/ToDo-list/images/b_drop.png" alt="Delete user"></a></td></tr>
-      {/foreach}
-			</table>
-      {control vp}
+      {control editUserForm}
     </div>
   </div>
   <div id="navigation">

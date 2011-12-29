@@ -7,7 +7,7 @@
 <div id="wrapper">
 <div id="container">
   <div id="topline">
-    {$title}
+		{$title}
   </div>
   <div id="header"><h1>{$loggedAs}</div>
   <div id="wrapper">
@@ -15,7 +15,7 @@
       <table>
       <th>Name</th><th colspan="2">Options</th>
       {foreach $categories as $row}
-      <tr><td>{$row->name}</td><td><a n:href="Settings:default, editCategory=>$row->idcategory"><img src="/ToDo-list/images/b_edit.png" alt="Edit Category"></a></td><td><a n:href="Settings:default, deleteCategory=>$row->idcategory"><img src="/ToDo-list/images/b_drop.png" alt="Delete Category"></a></td></tr>
+      <tr><td>{$row->name}</td><td><a n:href="editCategory id=>$row->idcategory"><img src="/ToDo-list/images/b_edit.png" alt="Edit Category"></a></td><td><a n:href="Settings:default, deleteCategory=>$row->idcategory"><img src="/ToDo-list/images/b_drop.png" alt="Delete Category"></a></td></tr>
       {/foreach}
 			</table>
       {control vp}

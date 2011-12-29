@@ -84,9 +84,8 @@ class ProfilePresenter extends BasePresenter
 
 		if($this->getUser()->isLoggedIn()) { // přihlášení uživatelé
 			$this->template->loggedAs = "Přihlášen jako " . $this->getUser()->identity->data[0] . " (" . $this->getUser()->identity->data[1] . ")";
-			$this->createComponentVp();
+
 			$this->template->categories = $this->listCategories($this['vp']->getPaginator());
-			$this->createComponentAddCategoryForm();
     }else{
       $this->redirect('Homepage:');
     }

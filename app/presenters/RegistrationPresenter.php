@@ -87,7 +87,6 @@ class RegistrationPresenter extends BasePresenter
     $this->template->loggedAs = "Přihlášen jako " . $this->getUser()->getId();
     }else{
         $this->template->loggedAs = "Nepřihlášen";
-        $this->createComponentSignInForm();
     }
      $this->makeMenu($this->getUser()->isLoggedIn());
   }
