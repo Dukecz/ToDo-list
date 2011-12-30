@@ -32,6 +32,8 @@ class HomepagePresenter extends BasePresenter
 	{
 		$form = new UI\Form;
 
+    $form->getElementPrototype()->novalidate = 'novalidate';
+
 		$form->addText('name', 'Task name:')
 			->setRequired('Please provide a task name.');
 
@@ -154,7 +156,9 @@ class HomepagePresenter extends BasePresenter
 	{
 
 		$form = new UI\Form;
-
+    
+    $form->getElementPrototype()->novalidate = 'novalidate';   
+    
 		$form->addText('name', 'Task name:')
 			->setRequired('Please provide a task name.');
 
@@ -173,7 +177,7 @@ class HomepagePresenter extends BasePresenter
 
     $result = dibi::query('SELECT idcategory, name FROM `categories` WHERE iduser = %i', $this->getUser()->getId())->fetchPairs('idcategory', 'name');
 
-    $form->addRadioList('category', 'Category', $result)
+    $form->addRadioList('idcategory', 'Category', $result)
       ->setRequired('Please select category.');
 
 		$form->addHidden('idtask');
@@ -189,7 +193,7 @@ class HomepagePresenter extends BasePresenter
     'description' => $task->description,
 		'deadline' => $task->deadline,
 		'priority' => $task->priority,
-		'category' => $task->idcategory,
+		'idcategory' => $task->idcategory,
 		'idtask' => $task->idtask,
 		));
 
@@ -217,10 +221,10 @@ class HomepagePresenter extends BasePresenter
     		'description' => $values->description,
 				'deadline' => $values->deadline,
 				'priority' => $values->priority,
-				'category' => $values->idcategory,
+				'idcategory' => $values->idcategory,
 				);
 
-				dibi::query('UPDATE `tasks` SET ', $arr, 'WHERE `id`=%i', $values->idtask);
+				dibi::query('UPDATE `tasks` SET ', $arr, 'WHERE `idtask`=%i', $values->idtask);
 		}
     $this->redirect('Homepage:default');
 	}
@@ -237,7 +241,7 @@ class HomepagePresenter extends BasePresenter
 	
     $session = $this->getSession('session');
   
-	if(isset($_GET["deleteTask"])) $this->deleteTask();
+	if($this->getParam("deleteTask")) $this->deleteTask();
 
   if($this->getUser()->isLoggedIn()) { // přihlášení uživatelé
 			$this->template->loggedAs = "Přihlášen jako " . $this->getUser()->identity->data[0] . " (" . $this->getUser()->identity->data[1] . ")";
@@ -253,7 +257,7 @@ class HomepagePresenter extends BasePresenter
 	/**
  * Function puts variables into template
  */
-  public function renderEditTask()
+  public function renderEditTask($id)
 	{
 	  $this->template->description =  "Semestrální práce pro WA1.";
 	  $this->template->keywords =  "kruzimic, fel, čvut, java, programováni, php, html, css, js, ajax";
