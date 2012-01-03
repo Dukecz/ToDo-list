@@ -93,10 +93,7 @@ class AdminPresenter extends BasePresenter
  */
   public function renderDefault()
 	{
-	  $this->template->description =  "Semestrální práce pro WA1.";
-	  $this->template->keywords =  "kruzimic, fel, čvut, java, programováni, php, html, css, js, ajax";
 	  $this->template->title =  "ToDo-list";
-	  $this->template->robots =  "index,follow";
 	
     $session = $this->getSession('session');
 
@@ -117,10 +114,7 @@ class AdminPresenter extends BasePresenter
  */
   public function renderEditUser($id)
 	{
-	  $this->template->description =  "Semestrální práce pro WA1.";
-	  $this->template->keywords =  "kruzimic, fel, čvut, java, programováni, php, html, css, js, ajax";
 	  $this->template->title =  "ToDo-list / Admin";
-	  $this->template->robots =  "index,follow";
 
     $session = $this->getSession('session');
 

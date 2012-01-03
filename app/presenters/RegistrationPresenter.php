@@ -79,10 +79,7 @@ class RegistrationPresenter extends BasePresenter
   	
   public function renderDefault()
 	{
-	  $this->template->description =  "Semestrální práce pro WA1.";
-	  $this->template->keywords =  "kruzimic, fel, čvut, java, programováni, php, html, css, js, ajax";
 	  $this->template->title =  "ToDo-list / Registration";
-	  $this->template->robots =  "index,follow";
 	
     $session = $this->getSession('session');
   

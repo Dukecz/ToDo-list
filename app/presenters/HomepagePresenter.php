@@ -282,10 +282,7 @@ class HomepagePresenter extends BasePresenter
  */
   public function renderDefault()
 	{
-	  $this->template->description =  "Semestrální práce pro WA1.";
-	  $this->template->keywords =  "kruzimic, fel, čvut, java, programováni, php, html, css, js, ajax";
 	  $this->template->title =  "ToDo-list";
-	  $this->template->robots =  "index,follow";
 	
     $session = $this->getSession('session');
   
@@ -309,10 +306,7 @@ class HomepagePresenter extends BasePresenter
  */
   public function renderEditTask($id)
 	{
-	  $this->template->description =  "Semestrální práce pro WA1.";
-	  $this->template->keywords =  "kruzimic, fel, čvut, java, programováni, php, html, css, js, ajax";
 	  $this->template->title =  "ToDo-list / Edit Task";
-	  $this->template->robots =  "index,follow";
 
     $session = $this->getSession('session');
 
@@ -326,10 +320,7 @@ class HomepagePresenter extends BasePresenter
 
   public function renderCategory($id)
 	{
-	  $this->template->description =  "Semestrální práce pro WA1.";
-	  $this->template->keywords =  "kruzimic, fel, čvut, java, programováni, php, html, css, js, ajax";
 	  $this->template->title =  "ToDo-list / Tasks";
-	  $this->template->robots =  "index,follow";
 
     $session = $this->getSession('session');
 

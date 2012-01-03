@@ -142,11 +142,7 @@ class CategoriesPresenter extends BasePresenter
  */
   public function renderDefault()
 	{
-
-	  $this->template->description =  "Semestrální práce pro WA1.";
-	  $this->template->keywords =  "kruzimic, fel, čvut, java, programováni, php, html, css, js, ajax";
 	  $this->template->title =  "ToDo-list";
-	  $this->template->robots =  "index,follow";
 	
     $session = $this->getSession('session');
 
@@ -167,10 +163,7 @@ class CategoriesPresenter extends BasePresenter
  */
   public function renderEditCategory($id)
 	{
-	  $this->template->description =  "Semestrální práce pro WA1.";
-	  $this->template->keywords =  "kruzimic, fel, čvut, java, programováni, php, html, css, js, ajax";
 	  $this->template->title =  "ToDo-list / Categories";
-	  $this->template->robots =  "index,follow";
 
     $session = $this->getSession('session');
 
