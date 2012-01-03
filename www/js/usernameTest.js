@@ -24,7 +24,6 @@ var receiveResponse = function() {
 	if (this.responseText == 0){
 		result.innerHTML  = '<img src="/ToDo-list/images/s_success.png" alt="Uživatelské jméno je volné.">';
 	}else{
-		//result.value = '<img src="/ToDo-list/images/b_drop.png" alt="Delete Category">';
 		result.innerHTML  = '<img src="/ToDo-list/images/b_drop.png" alt="Uživatelské jméno není volné.">';
 	}
 }

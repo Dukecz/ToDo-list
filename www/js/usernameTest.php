@@ -1,5 +1,5 @@
 <?php
-include ("../../libs/Dibi/dibi.php");
+require_once ("../../libs/Dibi/dibi.php");
 
 	if (!isset($_GET["q"])) { die(); }
 	$username = $_GET["q"];
@@ -16,7 +16,7 @@ include ("../../libs/Dibi/dibi.php");
     ));
 		$result = dibi::query('SELECT * FROM `users` WHERE username = %s', $username);  // kontrola jestli je jméno již v db
 	} catch (DibiException $e) {
-    echo get_class($e), ': ', $e->getMessage(), "\n";
+    die();
 	}
 
 	echo count($result);
