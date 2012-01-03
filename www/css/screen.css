@@ -30,3 +30,5 @@ a[href^="error:"] {
 	background: red;
 	color: white;
 }
+
+.required label { color: maroon }

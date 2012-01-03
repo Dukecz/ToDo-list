@@ -147,3 +147,5 @@ div#footer {
 	color: white;
 	font-weight: bold;
 }
+
+.required label { color: red }
