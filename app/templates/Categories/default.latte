@@ -1,6 +1,4 @@
 {block head}
-<link rel="stylesheet" href="{$basePath}/css/style.css" type="text/css">
-<script src="../js/alphanumeric.js" type="text/javascript"></script>
 {/block}
 
 {block content}
@@ -14,10 +12,12 @@
     <div id="content">
 			{ifset $error}<p class="error">{$error}</p>{/ifset}
 			<table>
-      <th>Name</th><th colspan="2">Options</th>
-      {foreach $categories as $row}
-      <tr><td>{$row->name}</td><td><a n:href="editCategory, $row->idcategory"><img src="/ToDo-list/images/b_edit.png" alt="Edit Category"></a></td><td><a n:href="Categories:default, deleteCategory=>$row->idcategory"><img src="/ToDo-list/images/b_drop.png" alt="Delete Category"></a></td></tr>
-      {/foreach}
+				<thead>
+      		<tr><th>Name</th><th colspan="2">Options</th></tr>
+      		{foreach $categories as $row}
+      		<tr><td>{$row->name}</td><td><a n:href="editCategory, $row->idcategory"><img src="{$basePath}/images/b_edit.png" alt="Edit Category"></a></td><td><a n:href="Categories:default, deleteCategory=>$row->idcategory"><img src="{$basePath}/images/b_drop.png" alt="Delete Category"></a></td></tr>
+      		{/foreach}
+				</thead>
 			</table>
       {control vp}
 			{control addCategoryForm}

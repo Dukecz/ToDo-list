@@ -1,15 +1,12 @@
 {block head}
-<link rel="stylesheet" href="{$basePath}/css/style.css" type="text/css">
-<script src="../js/alphanumeric.js" type="text/javascript"></script>
 {/block}
 
 {block content}
-<div id="wrapper">
 <div id="container">
   <div id="topline">
     {$title}
   </div>
-  <div id="header"><h1>{$loggedAs}</div>
+  <div id="header"><h1>{$loggedAs}</h1></div>
   <div id="wrapper">
     <div id="content">
       {if $loggedAs != "Nepřihlášen"}
@@ -18,10 +15,14 @@
 			{/foreach}
 			<a n:href="Homepage:default">Vše</a>
 			<table>
-      <th>Name</th><th>Description</th><th>Deadline</th><th>Status</th><th>Priority</th><th colspan="2">Options</th>
+			<thead>
+      <tr><th>Name</th><th>Description</th><th>Deadline</th><th>Status</th><th>Priority</th><th colspan="2">Options</th></tr>
+			</thead>
+			<tbody>
       {foreach $tasks as $row}
-      <tr><td>{$row->name}</td><td>{$row->description}</td><td>{$row->deadline}</td><td>{$row->status}</td><td>{$row->priority}</td><td><a n:href="editTask, $row->idtask"><img src="/ToDo-list/images/b_edit.png" alt="Edit Task"></a></td><td><a n:href="Homepage:default, deleteTask=>$row->idtask"><img src="/ToDo-list/images/b_drop.png" alt="Delete Task"></a></td></tr>
+      <tr><td>{$row->name}</td><td>{$row->description}</td><td>{$row->deadline}</td><td>{$row->status}</td><td>{$row->priority}</td><td><a n:href="editTask, $row->idtask"><img src="{$basePath}/images/b_edit.png" alt="Edit Task"></a></td><td><a n:href="Homepage:default, deleteTask=>$row->idtask"><img src="{$basePath}/images/b_drop.png" alt="Delete Task"></a></td></tr>
       {/foreach}
+			<tbody>
 			</table>
       {control vp}
       {control addTaskForm}
@@ -38,6 +39,5 @@
   </div>
   <div id="extra"></div>
   <div id="footer"></div>
-</div>
 </div>
 {/block}
