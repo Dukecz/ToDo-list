@@ -12,8 +12,7 @@
   <div id="header"><h1>{$loggedAs}</div>
   <div id="wrapper">
     <div id="content">
-      {if $loggedAs != "Nepřihlášen"}
-			{foreach $categoryList as $row}
+      {foreach $categoryList as $row}
 			<a n:href="category, $row->idcategory">{$row->name}</a>
 			{/foreach}
 			<a n:href="Homepage:default">Vše</a>
@@ -25,9 +24,6 @@
 			</table>
       {control vp}
       {control addTaskForm}
-      {else}
-      {control signInForm}
-		  {/if}
     </div>
   </div>
   <div id="navigation">

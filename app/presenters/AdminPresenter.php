@@ -40,6 +40,8 @@ class AdminPresenter extends BasePresenter
 
 		$form = new UI\Form;
 
+		$form->getElementPrototype()->novalidate = 'novalidate';
+
 		$form->addText('username', 'Username:')
 			->setRequired('Please provide a task name.');
 
@@ -77,12 +79,12 @@ class AdminPresenter extends BasePresenter
 
 		$arr = array(
     	'username' => $values->username,
-			'role' => $user->role,
+			'role' => $values->role,
 		);
 
-			dibi::query('UPDATE `tasks` SET ', $arr, 'WHERE `id`=%i', $values->iduser);
+			dibi::query('UPDATE `users` SET ', $arr, 'WHERE `iduser`=%i', $values->iduser);
 	}
-      $this->redirect('Homepage:default');
+      $this->redirect('Admin:default');
 	}
 
 
@@ -113,11 +115,11 @@ class AdminPresenter extends BasePresenter
 /**
  * Function puts variables into template
  */
-  public function renderEditUser()
+  public function renderEditUser($id)
 	{
 	  $this->template->description =  "Semestrální práce pro WA1.";
 	  $this->template->keywords =  "kruzimic, fel, čvut, java, programováni, php, html, css, js, ajax";
-	  $this->template->title =  "ToDo-list";
+	  $this->template->title =  "ToDo-list / Admin";
 	  $this->template->robots =  "index,follow";
 
     $session = $this->getSession('session');

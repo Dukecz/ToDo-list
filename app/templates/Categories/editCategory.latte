@@ -1,5 +1,6 @@
 {block head}
 <link rel="stylesheet" href="{$basePath}/css/style.css" type="text/css">
+<script src="../js/alphanumeric.js" type="text/javascript"></script>
 {/block}
 
 {block content}
@@ -11,25 +12,7 @@
   <div id="header"><h1>{$loggedAs}</div>
   <div id="wrapper">
     <div id="content">
-			{form registerForm}
-			<ul class="errors" n:if="$form->hasErrors()">
-        <li n:foreach="$form->errors as $error">{$error}</li>
-			</ul>
-			<table>
-				<tr class="required">
-    			<th>{label username /}</th>
-    			<td>{input username}</td><td id=result></td>
-				</tr>
-				<tr class="required">
-    			<th>{label password /}</th>
-    			<td>{input password}</td>
-				</tr>
-				<tr>
-				<th>&nbsp;</th>
-				<td>{input send}</td>
-				</table>
-			{/form registerForm}
-			<script src="../js/usernameTest.js" type="text/javascript"></script>
+      {control editCategoryForm}
     </div>
   </div>
   <div id="navigation">

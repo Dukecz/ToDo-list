@@ -1,5 +1,6 @@
 <?php
 use Nette\Application\UI,
+	Nette\Forms\Form,
 	Nette\Security as NS;
 /**
  * Homepage presenter.
@@ -16,28 +17,23 @@ use Nette\Application\UI,
  */
 class ProfilePresenter extends BasePresenter
 {
-
-  protected function listCategories($paginator)
-  {
-    $paginator->SetItemCount(dibi::query('SELECT count(*) FROM `categories` WHERE iduser = %i', $this->getUser()->getId())->fetchSingle());
-    return $result  = dibi::query('SELECT * FROM `categories` WHERE iduser = %i %ofs %lmt', $this->getUser()->getId(), $paginator->getOffset(), $paginator->getItemsPerPage())->fetchAll();
-  }
-
+private $salt = "sůlnadzlato";
 /**
  * Function that creates add task form
  *
  * @return UI\Form created add task form
  */
-		protected function createComponentAddCategoryForm()
+		protected function createComponentEditPasswordForm()
 	{
 		$form = new UI\Form;
 
-		$form->addText('name', 'Task name:')
-			->setRequired('Please provide a category name.');
+		$form->addPassword('password', 'Passowrd:')
+			->setRequired('Please provide a password.')
+				->addRule(Form::MIN_LENGTH, 'Heslo musí mít alespoň %d znaků', 5);;
 
-		$form->addSubmit('addtask', 'Add Task');
+		$form->addSubmit('changepassword', 'Change password');
 
-		$form->onSuccess[] = callback($this, 'AddCategoryFormSubmitted');
+		$form->onSuccess[] = callback($this, 'EditPasswordFormSubmitted');
 		return $form;
 	}
 
@@ -46,25 +42,18 @@ class ProfilePresenter extends BasePresenter
  *
  * @param UI\Form submitted form
  */
-	public function AddCategoryFormSubmitted($form)
+	public function EditPasswordFormSubmitted($form)
 	{
 		try {
 			$values = $form->getValues();
 
-			dibi::begin();
-
 			$arr = array(
-      	'name' => $values->name,
-				'iduser'  => $this->getUser()->getId(),
+      	'passw' => md5($values->password . $this->salt),
         );
 
-			dibi::query('INSERT INTO categories', $arr);
+			dibi::query('UPDATE `users` SET ', $arr, 'WHERE `iduser`=%i', $this->getUser()->getId());
 
-			dibi::commit();
-
-      $this->redirect('Settings:');
-
-
+      $this->redirect('Profile:');
 		} catch (NS\AuthenticationException $e) {
 			$form->addError($e->getMessage());
 		}
@@ -72,20 +61,18 @@ class ProfilePresenter extends BasePresenter
 /**
  * Function puts variables into template
  */
-  public function renderDefault()
+  public function renderDefault($id)
 	{
 
 	  $this->template->description =  "Semestrální práce pro WA1.";
 	  $this->template->keywords =  "kruzimic, fel, čvut, java, programováni, php, html, css, js, ajax";
-	  $this->template->title =  "ToDo-list";
+	  $this->template->title =  "ToDo-list / Profile";
 	  $this->template->robots =  "index,follow";
 	
     $session = $this->getSession('session');
 
 		if($this->getUser()->isLoggedIn()) { // přihlášení uživatelé
 			$this->template->loggedAs = "Přihlášen jako " . $this->getUser()->identity->data[0] . " (" . $this->getUser()->identity->data[1] . ")";
-
-			$this->template->categories = $this->listCategories($this['vp']->getPaginator());
     }else{
       $this->redirect('Homepage:');
     }

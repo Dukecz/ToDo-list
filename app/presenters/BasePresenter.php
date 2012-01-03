@@ -31,14 +31,14 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     }else{
     $this->template->menuItems = array(
             'Domů' => 'Homepage:',
-            'Nastavení' => 'Settings:',
+            'Kategorie' => 'Categories:',
 						'Profil' => 'Profile:',
             'Odhlášení' => 'Logout:',
             );
 			if($this->getUser()->isInRole('2')){
     		$this->template->menuItems = array(
             'Domů' => 'Homepage:',
-            'Nastavení' => 'Settings:',
+            'Nastavení' => 'Categories:',
 						'Administrace' => 'Admin:',
 						'Profil' => 'Profile:',
             'Odhlášení' => 'Logout:',

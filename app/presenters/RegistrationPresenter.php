@@ -1,6 +1,6 @@
 <?php
 use Nette\Application\UI,
-Nette\Forms\Form,
+	Nette\Forms\Form,
 	Nette\Security as NS;
 /**
  * Homepage presenter.
@@ -12,16 +12,19 @@ class RegistrationPresenter extends BasePresenter
 {
   private $salt = "sůlnadzlato";
   
-	protected function createComponentSignInForm()
+	protected function createComponentRegisterForm()
 	{
 		$form = new UI\Form;
+
+		$form->getElementPrototype()->novalidate = 'novalidate';
+
 		$form->addText('username', 'Username:')
 			->setRequired('Please provide a username.')
-			->addRule(Form::PATTERN, 'Může obsahovat pouze alfanumerické znaky a _', '^[a-zA-Z0-9_]+$');
+				->addRule(Form::PATTERN, 'Může obsahovat pouze alfanumerické znaky a _', '^[a-zA-Z0-9_]+$');
 
 		$form->addPassword('password', 'Password:')
 			->setRequired('Please provide a password.')
-			->addRule(Form::MIN_LENGTH, 'Heslo musí mít alespoň %d znaků', 5);
+				->addRule(Form::MIN_LENGTH, 'Heslo musí mít alespoň %d znaků', 5);
 
 		$form->addSubmit('send', 'Register');
 
@@ -78,16 +81,16 @@ class RegistrationPresenter extends BasePresenter
 	{
 	  $this->template->description =  "Semestrální práce pro WA1.";
 	  $this->template->keywords =  "kruzimic, fel, čvut, java, programováni, php, html, css, js, ajax";
-	  $this->template->title =  "ToDo-list";
+	  $this->template->title =  "ToDo-list / Registration";
 	  $this->template->robots =  "index,follow";
 	
     $session = $this->getSession('session');
   
   if($this->getUser()->isLoggedIn()) { // přihlášení uživatelé
-    $this->template->loggedAs = "Přihlášen jako " . $this->getUser()->getId();
-    }else{
-        $this->template->loggedAs = "Nepřihlášen";
-    }
-     $this->makeMenu($this->getUser()->isLoggedIn());
+    $this->redirect('Homepage:');
+  }else{
+  	$this->template->loggedAs = "Nepřihlášen";
+  }
+  $this->makeMenu($this->getUser()->isLoggedIn());
   }
 }
