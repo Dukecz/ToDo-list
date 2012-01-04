@@ -1,30 +1,46 @@
 <?php
 
-
 /**
- * Model base class.
+ * Model base class
+ * 
+ * @author Michal Kruzik
+ * @version 1.0
  */
-class Model extends Nette\Object
-{
-  private static $db;
-  
-	public function __construct()
-	{
-	}
-    
+class Model extends Nette\Object {
 
-  public function getDb() {
+    /**
+     * Static database variable
+     * 
+     * @var DibiConnection database connection 
+     */
+    private static $db;
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        
+    }
+
+    /**
+     * Returns current connection or creates new one (as singleton)
+     * 
+     * @return DibiConnection 
+     */
+    public function getDb() {
         if (self::$db == NULL) {
             self::$db = new DibiConnection(Environment::getConfig('database'));
         }
-
         return self::$db;
     }
 
-
-	public function createAuthenticatorService()
-	{
-		return new Authenticator();
-	}
+    /**
+     * Constructor of Authenticator
+     * 
+     * @return Authenticator 
+     */
+    public function createAuthenticatorService() {
+        return new Authenticator();
+    }
 
 }
