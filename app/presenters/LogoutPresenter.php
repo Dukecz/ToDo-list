@@ -1,18 +1,19 @@
 <?php
 
 /**
- * Logout presenter.
+ * Sign in/out presenters.
  *
- * @author Michal Kruzik
- * @version 1.0
+ * @author     John Doe
+ * @package    MyApplication
  */
-class LogoutPresenter extends BasePresenter {
-/**
- * Logouts user and redirect him to homepage
- */
-    public function renderDefault() {
-        $this->getUser()->logout();
-        $this->redirect('Homepage:');
-    }
+class LogoutPresenter extends BasePresenter
+{
+
+
+  public function renderDefault()
+  {
+	 $this->getUser()->logout();
+	 $this->redirect('Homepage:');
+  }
 
 }
