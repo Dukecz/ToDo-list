@@ -1,12 +1,10 @@
 <?php
 
 /**
- * My Application bootstrap file.
+ * Application bootstrap file.
  */
-
 use Nette\Diagnostics\Debugger,
-	Nette\Application\Routers\Route;
-
+    Nette\Application\Routers\Route;
 
 // Load Nette Framework
 $params['libsDir'] = __DIR__ . '/../libs';
