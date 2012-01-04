@@ -6,7 +6,7 @@ Task manager for single users. This is created as semestral work for college.
 
 Status
 -------------
-Betaversion with limited management functionality.
+Working version, fixing bugs.
 
 TODO
 -------------
