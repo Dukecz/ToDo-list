@@ -322,6 +322,8 @@ class HomepagePresenter extends BasePresenter {
 
             $this->template->categoryList = $this->getCategoryList();
 
+						$this->template->id = $id;
+
             $this->template->tasks = $this->listTasks($this['vp']->getPaginator(), $id);
         } else {
             $this->redirect('Homepage:');

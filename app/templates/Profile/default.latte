@@ -2,25 +2,5 @@
 {/block}
 
 {block content}
-<div id="wrapper">
-<div id="container">
-  <div id="topline">
-    {$title}
-  </div>
-  <div id="header"><h1>{$loggedAs}</div>
-  <div id="wrapper">
-    <div id="content">
-			{control editPasswordForm}
-    </div>
-  </div>
-  <div id="navigation">
-    <p><strong>MENU</strong></p>
-      <ul n:inner-foreach="$menuItems as $item => $link">
-      <li><a n:href="$link">{$item}</a></li>
-      </ul>
-  </div>
-  <div id="extra"></div>
-  <div id="footer"></div>
-</div>
-</div>
+	{control editPasswordForm}
 {/block}

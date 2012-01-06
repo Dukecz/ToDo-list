@@ -26,7 +26,7 @@ class ProfilePresenter extends BasePresenter {
     public function createComponentEditPasswordForm() {
         $form = new UI\Form;
 
-        $form->addPassword('password', 'Passowrd:')
+        $form->addPassword('password', 'Password:')
                 ->setRequired('Please provide a password.')
                 ->addRule(Form::MIN_LENGTH, 'Heslo musí mít alespoň %d znaků', 5);
         ;

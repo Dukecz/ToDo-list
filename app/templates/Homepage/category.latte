@@ -2,36 +2,22 @@
 {/block}
 
 {block content}
-<div id="wrapper">
-<div id="container">
-  <div id="topline">
-    {$title}
-  </div>
-  <div id="header"><h1>{$loggedAs}</div>
-  <div id="wrapper">
-    <div id="content">
-      {foreach $categoryList as $row}
-			<a n:href="category, $row->idcategory">{$row->name}</a>
+	<div class="category">
+		{foreach $categoryList as $row}
+			<a {if $id == $row->idcategory}class="current"{/if} n:href="category, $row->idcategory">{$row->name}</a>
+		{/foreach}
+		<a n:href="Homepage:default:">Vše</a>
+	</div>
+	<table class="center">
+		<thead>
+			<th>Name</th><th>Description</th><th>Deadline</th><th>Status</th><th>Priority</th><th colspan="2">Options</th>
+		</thead>
+		<tbody>
+			{foreach $tasks as $row}
+				<tr><td>{$row->name}</td><td>{$row->description}</td><td>{$row->deadline}</td><td>{$row->status}</td><td>{$row->priority}</td><td><a n:href="editTask, $row->idtask"><img src="{$basePath}/images/b_edit.png" alt="Edit Task"></a></td><td><a n:href="Homepage:default, deleteTask=>$row->idtask"><img src="{$basePath}/images/b_drop.png" alt="Delete Task"></a></td></tr>
 			{/foreach}
-			<a n:href="Homepage:default">Vše</a>
-			<table>
-      <th>Name</th><th>Description</th><th>Deadline</th><th>Status</th><th>Priority</th><th colspan="2">Options</th>
-      {foreach $tasks as $row}
-      <tr><td>{$row->name}</td><td>{$row->description}</td><td>{$row->deadline}</td><td>{$row->status}</td><td>{$row->priority}</td><td><a n:href="editTask, $row->idtask"><img src="{$basePath}/images/b_edit.png" alt="Edit Task"></a></td><td><a n:href="Homepage:default, deleteTask=>$row->idtask"><img src="{$basePath}/images/b_drop.png" alt="Delete Task"></a></td></tr>
-      {/foreach}
-			</table>
-      {control vp}
-      {control addTaskForm}
-    </div>
-  </div>
-  <div id="navigation">
-    <p><strong>MENU</strong></p>
-      <ul n:inner-foreach="$menuItems as $item => $link">
-      <li><a n:href="$link">{$item}</a></li>
-      </ul>
-  </div>
-  <div id="extra"></div>
-  <div id="footer"></div>
-</div>
-</div>
+		</tbody>
+	</table>
+	{control vp}
+	{control addTaskForm}
 {/block}

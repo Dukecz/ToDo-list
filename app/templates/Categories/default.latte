@@ -2,35 +2,17 @@
 {/block}
 
 {block content}
-<div id="wrapper">
-<div id="container">
-  <div id="topline">
-		{$title}
-  </div>
-  <div id="header"><h1>{$loggedAs}</div>
-  <div id="wrapper">
-    <div id="content">
 			{ifset $error}<p class="error">{$error}</p>{/ifset}
-			<table>
+			<table class="center">
 				<thead>
       		<tr><th>Name</th><th colspan="2">Options</th></tr>
-      		{foreach $categories as $row}
-      		<tr><td>{$row->name}</td><td><a n:href="editCategory, $row->idcategory"><img src="{$basePath}/images/b_edit.png" alt="Edit Category"></a></td><td><a n:href="Categories:default, deleteCategory=>$row->idcategory"><img src="{$basePath}/images/b_drop.png" alt="Delete Category"></a></td></tr>
-      		{/foreach}
 				</thead>
+				<tbody>
+      		{foreach $categories as $row}
+      			<tr><td>{$row->name}</td><td><a n:href="editCategory, $row->idcategory"><img src="{$basePath}/images/b_edit.png" alt="Edit Category"></a></td><td><a n:href="Categories:default, deleteCategory=>$row->idcategory"><img src="{$basePath}/images/b_drop.png" alt="Delete Category"></a></td></tr>
+      		{/foreach}
+				</tbody>
 			</table>
       {control vp}
 			{control addCategoryForm}
-    </div>
-  </div>
-  <div id="navigation">
-    <p><strong>MENU</strong></p>
-      <ul n:inner-foreach="$menuItems as $item => $link">
-      <li><a n:href="$link">{$item}</a></li>
-      </ul>
-  </div>
-  <div id="extra"></div>
-  <div id="footer"></div>
-</div>
-</div>
 {/block}
