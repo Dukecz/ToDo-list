@@ -1,173 +1,139 @@
 html,body {
-    margin:0;
-    padding:0;
+margin:0;
+padding:0;
 }
 
 body {
-    font:100% arial,sans-serif;
-    text-align:center;
-    background-repeat:repeat-x;
+font:100% arial,sans-serif;
+text-align:center;
+background-repeat:repeat-x;
 }
 
 p {
-    margin:0 10px 10px;
+margin:0 10px 10px;
 }
 
 a {
-    text-decoration:none;
-    padding:5px;
+text-decoration:none;
+padding:5px;
 }
 
 div#header {
-    text-align:center;
-		height:50px;
-    line-height:50px;
-    padding-left:10px;
-    margin:0;
+text-align:center;
+height:50px;
+line-height:50px;
+padding-left:10px;
+margin:0;
 }
 
 div#content p {
-    line-height:1.4;
+line-height:1.4;
 }
-
-form table{
-    margin-left:auto;
-    margin-right:auto;
-}
-
-table.center {
-    margin-left:auto;
-    margin-right:auto;
-  }
 
 div#navigation ul {
-    list-style-type:none;
-    margin:15px 0;
-    padding:0;
+list-style-type:none;
+margin:15px 0;
+padding:0;
 }
 
 div#navigation li {
-    margin-bottom:5px;
+margin-bottom:5px;
 }
 
 div#footer p {
-    margin:0;
-    padding:5px 10px;
+margin:0;
+padding:5px 10px;
 }
 
 div#wrapper {
-    width:100%;
-		text-align:center;
-    width:800px;
-    margin:0 auto;
+text-align:center;
+width:800px;
+margin:0 auto;
 }
 
 div#content {
-    width:600px;
-		float:right;
+width:600px;
+float:right;
 }
 
 div#navigation {
-    float:left;
-    width:200px;
+float:left;
+width:200px;
 }
 
 div#footer {
-    clear:both;
-    width:100%;
+clear:both;
+width:100%;
 }
 
 .menubutton,.menubutton:visited {
-    background:#222 repeat-x;
-    display:inline-block;
-    color:#fff;
-    text-decoration:none;
-    font-weight:700;
-    line-height:1;
-    -moz-border-radius:5px;
-    -webkit-border-radius:5px;
-    -moz-box-shadow:0 1px 3px rgba(0,0,0,0.5);
-    -webkit-box-shadow:0 1px 3px rgba(0,0,0,0.5);
-    text-shadow:0 -1px 1px rgba(0,0,0,0.25);
-    border-bottom:1px solid rgba(0,0,0,0.25);
-    position:relative;
-    cursor:pointer;
-    padding:5px 10px 6px;
+background:#222 repeat-x;
+display:inline-block;
+color:#fff;
+text-decoration:none;
+font-weight:700;
+line-height:1;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+-moz-box-shadow:0 1px 3px rgba(0,0,0,0.5);
+-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.5);
+text-shadow:0 -1px 1px rgba(0,0,0,0.25);
+border-bottom:1px solid rgba(0,0,0,0.25);
+position:relative;
+cursor:pointer;
+padding:5px 10px 6px;
 }
 
 .menubutton:hover {
-    background-color:#111;
-    color:#EEE685;
+background-color:#111;
+color:#EEE685;
 }
 
 .menubutton:active {
-    top:1px;
+top:1px;
 }
 
 div#topline {
-    position:relative;
-    top:5px;
-    text-align:center;
-    background-color:#dedede;
-		font-size: 200%;
-}
-
-.error {
-    color: rgb(255,0,0);
-}
-
-/*paginator css*/
-
-.paginator {
-	margin: 1em 0;
-	font-size: 90%;
-}
-
-.paginator a, .paginator span {
-	margin-right: 0.1em;
-	padding: 0.2em 0.5em;
-	color: #999999;
-}
-
-.paginator a {
-	border: 1px solid #9AAFE5;
-	text-decoration: none;
-	color: #105CB6;
+position:relative;
+top:5px;
+text-align:center;
+background-color:#dedede;
+font-size:200%;
 }
 
 .paginator span.button {
-	border: 1px solid #DDDDDD;
+border:1px solid #DDD;
 }
 
-.paginator .current {
-	background: #2E6AB1;
-	border: 1px solid #2E6AB1;
-	color: white;
-	font-weight: bold;
+form table,table.center {
+margin-left:auto;
+margin-right:auto;
 }
 
-.category {
-	margin: 1em 0;
-	font-size: 90%;
+.error,.required label {
+color:red;
 }
 
-.category a, .category span {
-	margin-right: 0.1em;
-	padding: 0.2em 0.5em;
-	color: #999999;
+.paginator,.category {
+font-size:90%;
+margin:1em 0;
 }
 
-.category a {
-	border: 1px solid #9AAFE5;
-	text-decoration: none;
-	color: #105CB6;
+.paginator a,.paginator span,.category a,.category span {
+margin-right:.1em;
+color:#999;
+padding:.2em .5em;
 }
 
-.category .current {
-	background: #2E6AB1;
-	border: 1px solid #2E6AB1;
-	color: white;
-	font-weight: bold;
+.paginator a,.category a {
+border:1px solid #9AAFE5;
+text-decoration:none;
+color:#105CB6;
 }
 
-.required label { color: red }
+.paginator .current,.category .current {
+background:#2E6AB1;
+border:1px solid #2E6AB1;
+color:#FFF;
+font-weight:700;
+}
